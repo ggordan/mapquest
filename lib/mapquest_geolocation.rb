@@ -2,6 +2,7 @@ require 'rest-client'
 require 'json'
 require "mapquest_geolocation/version"
 require "mapquest_geolocation/request"
+require "mapquest_geolocation/response"
 
 class MapQuestGeocode
 
@@ -26,6 +27,7 @@ class MapQuestGeocode
     params.each { |k,v| params.delete(k) if v.nil? }
 
     response = MapquestGeolocation::Response.new req.send(params)
+    response
   end
 
 end
