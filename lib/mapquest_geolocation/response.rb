@@ -1,5 +1,5 @@
 module MapquestGeolocation
+  class Response
 
-  VERSION = "0.0.1"
-
+  end
 end
