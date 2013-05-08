@@ -1,6 +1,10 @@
 # MapquestGeolocation
 
-TODO: Write a gem description
+A gem to communicate with the MapQuest Geolocation API.
+
+API Key
+----
+To get an API key visit [http://developer.mapquest.com](http://developer.mapquest.com)
 
 ## Installation
 
@@ -18,7 +22,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    require 'mapquest_geolocation'
+
+    # Instantiate the API using an API key
+    mapquest = MapQuestGeocode.new API_KEY
+
+    # Get data from location
+    data = mapquest.decode :location => "London, UK"
+
+    # Get lat/long coordinates of all the locations found
+    data.locations.each { |location| puts location[:latLng] }
+    
 
 ## Contributing
 
