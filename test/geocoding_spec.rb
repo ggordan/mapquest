@@ -1,48 +1,78 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe "MapQuest::Services::Geocoding" do
+describe 'MapQuest::Services::Geocoding' do
 
-  before :all do
-    init
-    @response = @mapquest.geocoding.decode :location => "London, UK"
-  end
+  context 'when valid request' do
 
-  describe '.new' do
+    before :all do
+      @mapquest = MapQuest.new 'xxx'
+      @response = MapQuest::Services::Geocoding::Response.new fixture 'results'
+      @response.valid.should == true
+    end
 
-    it 'should be an instance of MapQuest::Service::Geocoding' do
-      @mapquest.geocoding.should be_an_instance_of MapQuest::Services::Geocoding
+    describe '.new' do
+      it 'should be an instance of' do
+        @mapquest.geocoding.should be_an_instance_of MapQuest::Services::Geocoding
+      end
+    end
+
+    describe '#decode' do
+      it 'should raise an error' do
+        expect { @mapquest.geocoding.decode }.to raise_error
+      end
+      it 'should be an instance of' do
+        @response.should be_an_instance_of MapQuest::Services::Geocoding::Response
+      end
+    end
+
+    describe '#Request' do
+      it 'should return 0' do
+        @response.status[:code].should == 0
+      end
+      it 'should be empty' do
+        @response.status[:messages].should == []
+      end
+      it 'should return locations' do
+        @response.locations.should_not == {}
+      end
     end
 
   end
 
-  describe '#decode' do
+  context 'when invalid request' do
 
-    it 'should raise an error if :location was not specified' do
-      expect { @mapquest.geocoding.decode }.to raise_error
+    before :all do
+      @mapquest = MapQuest.new 'xxx'
+      @response = @mapquest.geocoding.decode :location => "London, UK"
+      @response.valid.should == false
     end
 
-    it 'should return a new response object if :location was specified' do
-      @response.should be_an_instance_of MapQuest::Services::Geocoding::Response
+    describe '.new' do
+      it 'should be an instance of' do
+        @mapquest.geocoding.should be_an_instance_of MapQuest::Services::Geocoding
+      end
+    end
+
+    describe '#decode' do
+      it 'should raise an error' do
+        expect { @mapquest.geocoding.decode }.to raise_error
+      end
+      it 'should be an instance of' do
+        @response.should be_an_instance_of MapQuest::Services::Geocoding::Response
+      end
+    end
+
+    describe '#Request' do
+      it 'should not return 0' do
+        @response.status[:code].should_not == 0
+      end
+      it 'should not be empty' do
+        @response.status[:messages].should_not == []
+      end
+      it 'should not return 0' do
+        @response.locations[:code].should_not == 0
+      end
     end
 
   end
-
-  describe "Response" do
-    it 'should return 403 if the key is invalid' do
-      @response.status[:code].should == 403
-    end
-
-    it 'should return error messages if the status code is not 0' do
-      @response.status[:code].should_not == 0
-      @response.status[:messages].should_not be_empty
-    end
-
-    it 'should return empty results if the status code is not 0' do
-      @response.status[:code].should_not == 0
-      @response.locations.should be_empty
-      @response.providedLocation.should be_empty
-    end
-
-  end
-
 end
