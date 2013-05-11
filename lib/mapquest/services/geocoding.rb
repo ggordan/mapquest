@@ -10,7 +10,11 @@ class MapQuest
       class Response < MapQuest::Response
 
         def empty?
-          true if response[:results].first[:locations].any? else false
+          if response[:results].first[:locations].any?
+            true
+          else
+            false
+          end
         end
 
         def locations

@@ -4,6 +4,7 @@ describe "MapQuest::Services::Geocoding" do
 
   before :all do
     init
+    @response = @mapquest.geocoding.decode :location => "London, UK"
   end
 
   describe '.new' do
@@ -21,13 +22,27 @@ describe "MapQuest::Services::Geocoding" do
     end
 
     it 'should return a new response object if :location was specified' do
-      response = @mapquest.geocoding.decode :location => "London, UK"
-      response.should be_an_instance_of MapQuest::Response
+      @response.should be_an_instance_of MapQuest::Services::Geocoding::Response
     end
 
   end
 
-  describe '#response' do
+  describe "Response" do
+    it 'should return 403 if the key is invalid' do
+      @response.status[:code].should == 403
+    end
+
+    it 'should return error messages if the status code is not 0' do
+      @response.status[:code].should_not == 0
+      @response.status[:messages].should_not be_empty
+    end
+
+    it 'should return empty results if the status code is not 0' do
+      @response.status[:code].should_not == 0
+      @response.locations.should be_empty
+      @response.providedLocation.should be_empty
+    end
+
   end
 
 end
