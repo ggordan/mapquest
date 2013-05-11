@@ -18,11 +18,11 @@ class MapQuest
     Services::Geocoding.new self
   end
 
-  def request(method, params)
+  def request(method, params, response)
     req = Request.new method
     params.merge! :key => api_key
     params.each { |k,v| params.delete(k) if v.nil? }
-    @response = Response.new req.send(params)
+    @response = response.new req.send(params)
     return @response
   end
 
