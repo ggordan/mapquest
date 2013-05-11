@@ -3,6 +3,7 @@ require 'json'
 require "mapquest/response"
 require "mapquest/request"
 require "mapquest/services/core"
+require "mapquest/services/directions"
 require "mapquest/services/geocoding"
 
 class MapQuest
@@ -16,6 +17,10 @@ class MapQuest
 
   def geocoding
     Services::Geocoding.new self
+  end
+
+  def directions
+    Services::Directions.new self
   end
 
   def request(method, params, response)
