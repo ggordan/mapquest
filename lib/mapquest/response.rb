@@ -11,8 +11,12 @@ class MapQuest
       response[:info]
     end
 
+    def copyright
+      info[:copyright]
+    end
+
     def status
-      return { :code => info[:statuscode], :messages => info[:messages] }
+      return :code => info[:statuscode], :messages => info[:messages]
     end
 
   end
