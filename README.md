@@ -1,4 +1,4 @@
-# MapQuest
+# MapQuest [![Build Status](https://travis-ci.org/ggordan/mapquest.png?branch=master)](https://travis-ci.org/ggordan/mapquest)
 
 A gem to communicate with the MapQuest web services.
 
