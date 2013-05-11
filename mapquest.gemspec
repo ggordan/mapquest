@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'mapquest_geolocation/version'
+require 'mapquest/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "mapquest_geolocation"
-  spec.version       = MapquestGeolocation::VERSION
+  spec.name          = "mapquest"
+  spec.version       = MapQuest::VERSION
   spec.authors       = ["Gordan Grasarevic"]
   spec.email         = ["me@ggordan.com"]
-  spec.description   = "Retrieve data from the MapQuest geolocation API"
-  spec.summary       = "Geolocation interface for MapQuest"
+  spec.description   = "Retrieve data from various MapQuest web services"
+  spec.summary       = "Retrieve data from various MapQuest web services"
   spec.homepage      = ""
   spec.license       = "MIT"
 

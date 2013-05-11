@@ -1,13 +1,13 @@
-require 'mapquest_geolocation'
+require 'mapquest'
 
 RSpec.configure do |config|
 
   def fixture(filename)
-    File.dirname(__FILE__) + '/fixtures/' + filename + '.json'
+    File.open(File.dirname(__FILE__) + '/fixtures/' + filename + '.json', 'r').readlines
   end
 
   def init
-    @mapquest_geocode = MapQuestGeocode.new 'xxx'
+    @mapquest = MapQuest.new 'xxx'
   end
 
 end
