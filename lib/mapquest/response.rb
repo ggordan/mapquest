@@ -1,10 +1,12 @@
 class MapQuest
   class Response
 
-    attr_reader :response
+    attr_reader :response, :valid
 
-    def initialize(res)
-      @response = JSON.parse(res, :symbolize_names => true)
+    class InvalidRequest < StandardError; end
+
+    def initialize(response_string)
+      @response = JSON.parse(response_string, :symbolize_names => true)
     end
 
     def info
@@ -15,8 +17,11 @@ class MapQuest
       info[:copyright]
     end
 
+    # Returns information about the response.
+    # :code is an integer return value. See http://www.mapquestapi.com/geocoding/status_codes.html
+    # :messages subfield is an array of error messages which describe the status.
     def status
-      return :code => info[:statuscode], :messages => info[:messages]
+      return :code => info[:statuscode].to_i, :messages => info[:messages]
     end
 
   end
