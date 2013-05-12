@@ -1,11 +1,12 @@
 class MapQuest
   class Response
 
-    attr_reader :response, :valid
+    attr_reader :response, :valid, :params
 
     class InvalidRequest < StandardError; end
 
-    def initialize(response_string)
+    def initialize(response_string, params = {})
+      @params = params
       @response = JSON.parse(response_string, :symbolize_names => true)
     end
 
@@ -15,6 +16,10 @@ class MapQuest
 
     def copyright
       info[:copyright]
+    end
+
+    def options
+      response[:options]
     end
 
     # Returns information about the response.

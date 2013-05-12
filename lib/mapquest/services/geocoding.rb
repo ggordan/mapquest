@@ -54,8 +54,8 @@ class MapQuest
 
       class Response < MapQuest::Response
 
-        def initialize(response_string)
-          super response_string
+        def initialize(response_string, params = {})
+          super response_string, params
           valid_request?
         end
 
@@ -82,10 +82,6 @@ class MapQuest
 
         def providedLocation
           if valid then response[:results].first[:providedLocation] else status end
-        end
-
-        def options
-          if valid then response[:options] else status end
         end
 
       end
