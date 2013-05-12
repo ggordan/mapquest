@@ -96,7 +96,27 @@ describe MapQuest::Services::Geocoding do
         end
 
         it 'error messages should not be empty' do
-          wrong_api_key_response.status[:messages].should_not == []
+          wrong_api_key_response.status[:messages].first.should match /^This is not a valid key/
+        end
+
+      end
+
+    end
+
+    context 'when argument is invalid' do
+
+      let(:invalid_argument) do
+        MapQuest::Services::Geocoding::Response.new fixture 'geocoding/illegal_argument'
+      end
+
+      describe MapQuest::Services::Geocoding::Response do
+
+        it 'should return 400' do
+          invalid_argument.status[:code].should == 400
+        end
+
+        it 'error messages should not be empty' do
+          invalid_argument.status[:messages].first.should match /^Illegal argument/
         end
 
       end
