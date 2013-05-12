@@ -6,8 +6,4 @@ RSpec.configure do |config|
     File.open(File.dirname(__FILE__) + '/fixtures/' + filename + '.json', 'r').read
   end
 
-  def init
-    @mapquest = MapQuest.new 'xxx'
-  end
-
 end

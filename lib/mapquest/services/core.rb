@@ -4,8 +4,8 @@ class MapQuest
 
       attr_accessor :mapquest
 
-      def initialize(mq)
-        @mapquest = mq
+      def initialize(mapquest)
+        @mapquest = mapquest
       end
 
     end

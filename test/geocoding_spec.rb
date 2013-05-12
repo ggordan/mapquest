@@ -1,77 +1,106 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe 'MapQuest::Services::Geocoding' do
+describe MapQuest::Services::Geocoding do
+
+  let(:mapquest) do
+    MapQuest.new 'xxx'
+  end
+
+  describe '.new' do
+
+    it 'should be an instance of Geocoding' do
+      mapquest.geocoding.should be_an_instance_of MapQuest::Services::Geocoding
+    end
+
+  end
 
   context 'when valid request' do
 
-    before :all do
-      @mapquest = MapQuest.new 'xxx'
-      @response = MapQuest::Services::Geocoding::Response.new fixture 'results'
-      @response.valid.should == true
-    end
-
-    describe '.new' do
-      it 'should be an instance of' do
-        @mapquest.geocoding.should be_an_instance_of MapQuest::Services::Geocoding
-      end
+    let(:mapquest) do
+      MapQuest.new 'xxx'
     end
 
     describe '#decode' do
-      it 'should raise an error' do
-        expect { @mapquest.geocoding.decode }.to raise_error
+
+      it 'should receive a :location' do
+        mapquest.stub_chain(:geocoding, :decode)
+        mapquest.geocoding.should_receive(:decode).with(:location => 'xxx')
+        mapquest.geocoding.decode(:location => 'xxx')
       end
-      it 'should be an instance of' do
-        @response.should be_an_instance_of MapQuest::Services::Geocoding::Response
+
+      it 'should raise an error if :location is omitted' do
+        expect { mapquest.geocoding.decode }.to raise_error(MapQuest::Error)
       end
+
+      it 'should return an instance of Response' do
+        response = mapquest.geocoding.decode :location => 'xxx'
+        response.should be_an_instance_of MapQuest::Services::Geocoding::Response
+      end
+
     end
 
-    describe '#Request' do
-      it 'should return 0' do
-        @response.status[:code].should == 0
+    describe MapQuest::Services::Geocoding::Response do
+
+      let(:valid_response) do
+        MapQuest::Services::Geocoding::Response.new fixture 'geocoding/valid_results'
       end
-      it 'should be empty' do
-        @response.status[:messages].should == []
+
+      it 'status code should return 0' do
+        valid_response.status[:code].should == 0
       end
-      it 'should return locations' do
-        @response.locations.should_not == {}
+
+      it 'error messages should be empty' do
+        valid_response.status[:messages].should == []
       end
+
+      it 'should be a valid response' do
+        valid_response.valid.should == true
+      end
+
+      it 'should return a list of locations' do
+        valid_response.locations.should be_kind_of(Array)
+      end
+
+      it 'should return the provided location' do
+        valid_response.providedLocation[:location].should == 'London, UK'
+      end
+
     end
 
   end
 
   context 'when invalid request' do
 
-    before :all do
-      @mapquest = MapQuest.new 'xxx'
-      @response = @mapquest.geocoding.decode :location => "London, UK"
-      @response.valid.should == false
-    end
-
-    describe '.new' do
-      it 'should be an instance of' do
-        @mapquest.geocoding.should be_an_instance_of MapQuest::Services::Geocoding
-      end
+    let(:mapquest) do
+      MapQuest.new 'xxx'
     end
 
     describe '#decode' do
-      it 'should raise an error' do
+
+      it 'should raise an error if location was not specified' do
         expect { @mapquest.geocoding.decode }.to raise_error
       end
-      it 'should be an instance of' do
-        @response.should be_an_instance_of MapQuest::Services::Geocoding::Response
-      end
+
     end
 
-    describe '#Request' do
-      it 'should not return 0' do
-        @response.status[:code].should_not == 0
+    context 'when api key is invalid' do
+
+      let(:wrong_api_key_response) do
+        MapQuest::Services::Geocoding::Response.new fixture 'geocoding/invalid_key'
       end
-      it 'should not be empty' do
-        @response.status[:messages].should_not == []
+
+      describe MapQuest::Services::Geocoding::Response do
+
+        it 'should return 403' do
+          wrong_api_key_response.status[:code].should == 403
+        end
+
+        it 'error messages should not be empty' do
+          wrong_api_key_response.status[:messages].should_not == []
+        end
+
       end
-      it 'should not return 0' do
-        @response.locations[:code].should_not == 0
-      end
+
     end
 
   end

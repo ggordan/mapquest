@@ -1,0 +1,48 @@
+{"results": [
+    {
+        "locations": [
+            {
+                "latLng": {
+                    "lng": -76.305801,
+                    "lat": 40.0378
+                },
+                "adminArea4": "Lancaster County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Lancaster",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "PA",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -76.305801,
+                    "lat": 40.0378
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-1,40.0378,-76.305801,0,0|&center=40.0378,-76.305801&zoom=12&rand=-284900478",
+                "adminArea3Type": "State"
+            }
+        ],
+        "providedLocation": {
+            "location": "Lancaster,PA"
+        }
+    }
+], "options": {
+    "ignoreLatLngInput": false,
+    "maxResults": 1,
+    "thumbMaps": true
+}, "info": {
+    "copyright": {
+        "text": "© 2013 MapQuest, Inc.",
+        "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+        "imageAltText": "© 2013 MapQuest, Inc."
+    },
+    "statuscode": 0,
+    "messages": []
+}}

@@ -4,17 +4,20 @@ class MapQuest
 
       API_LOCATION = :geocoding
 
-      # Returns a response object of the found locations
-      # == Required parameters
+      class TooManyLocations < StandardError; end
+
+      # Allows you to search for a single location and returns a response object of the found locations
+      #
+      #   Example: .decode :location => "London, UK"
+      #
+      # ==Required parameters
       # * :location [String] The location for which you wish to get data
-      # == Optional parameters
+      # ==Optional parameters
       # * :maxResults [Integer] The number of results to limit the response to. Defaults to -1 (-1 indicates no limit)
       # * :thumbMaps [Boolean] Return a URL to a static map thumbnail image for a location. Defaults to true
       def decode(params = {})
         raise Error unless params.has_key? :location
-
-        # Remove keys that are not supported
-        params.keys.each { |k| params.delete(k) unless [:location,:maxResults,:thumbMaps].include? k }
+        remove_unavailable_params! params
         api_method = {
             :location => API_LOCATION,
             :version => '1',
@@ -23,21 +26,30 @@ class MapQuest
         mapquest.request api_method, params, Response
       end
 
-      # Returns a response object of the found locations
-      # == Required parameters
+      # Allows you to search for a location using lat/lng values and returns a response object of the found locations
+      #
+      #   Example: .reverse :location => ['40.0755','-76.329999']
+      #
+      # ==Required parameters
       # * :location [Array] The lat, and lng to search for
-      # == Optional parameters
+      # ==Optional parameters
       # * :maxResults [Integer] The number of results to limit the response to. Defaults to -1 (-1 indicates no limit)
       # * :thumbMaps [Boolean] Return a URL to a static map thumbnail image for a location. Defaults to true
       def reverse(params = {})
         raise Error unless params.has_key?(:location) && params[:location].kind_of?(Array)
-        params[:location] = params[:location].join(',')
+        params[:location] = params[:locations].join(',')
+        remove_unavailable_params! params
         api_method = {
             :location => API_LOCATION,
             :version => '1',
             :call => 'reverse'
         }
         mapquest.request api_method, params, Response
+      end
+
+      private
+      def remove_unavailable_params!(params)
+        params.keys.each { |k| params.delete(k) unless [:location,:maxResults,:thumbMaps].include? k }
       end
 
       class Response < MapQuest::Response

@@ -1,0 +1,339 @@
+{"results": [
+    {
+        "locations": [
+            {
+                "latLng": {
+                    "lng": -76.728104,
+                    "lat": 39.962502
+                },
+                "adminArea4": "York County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "York",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "PA",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -76.728104,
+                    "lat": 39.962502
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-1,39.962502,-76.728104,0,0|&center=39.962502,-76.728104&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            }
+        ],
+        "providedLocation": {
+            "location": "York,PA"
+        }
+    },
+    {
+        "locations": [
+            {
+                "latLng": {
+                    "lng": -76.606102,
+                    "lat": 39.900799
+                },
+                "adminArea4": "York County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Red Lion",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "PA",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -76.606102,
+                    "lat": 39.900799
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-1,39.900799,-76.606102,0,0|&center=39.900799,-76.606102&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            },
+            {
+                "latLng": {
+                    "lng": -84.249702,
+                    "lat": 39.491402
+                },
+                "adminArea4": "Warren County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Red Lion",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "OH",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -84.249702,
+                    "lat": 39.491402
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-2,39.491402,-84.249702,0,0|&center=39.491402,-84.249702&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            },
+            {
+                "latLng": {
+                    "lng": -102.676399,
+                    "lat": 40.891701
+                },
+                "adminArea4": "Logan County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Red Lion",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "CO",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -102.676399,
+                    "lat": 40.891701
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-3,40.891701,-102.676399,0,0|&center=40.891701,-102.676399&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            },
+            {
+                "latLng": {
+                    "lng": -75.6642,
+                    "lat": 39.608299
+                },
+                "adminArea4": "New Castle County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Red Lion",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "DE",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -75.6642,
+                    "lat": 39.608299
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-4,39.608299,-75.6642,0,0|&center=39.608299,-75.6642&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            },
+            {
+                "latLng": {
+                    "lng": -74.745003,
+                    "lat": 39.8894
+                },
+                "adminArea4": "Burlington County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Red Lion",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "NJ",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -74.745003,
+                    "lat": 39.8894
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-5,39.8894,-74.745003,0,0|&center=39.8894,-74.745003&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            },
+            {
+                "latLng": {
+                    "lng": -74.470802,
+                    "lat": 40.4436
+                },
+                "adminArea4": "Middlesex County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Red Lion",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "NJ",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -74.470802,
+                    "lat": 40.4436
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-6,40.4436,-74.470802,0,0|&center=40.4436,-74.470802&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            },
+            {
+                "latLng": {
+                    "lng": -75.616402,
+                    "lat": 40.480598
+                },
+                "adminArea4": "Berks County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Red Lion",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "PA",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -75.616402,
+                    "lat": 40.480598
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-7,40.480598,-75.616402,0,0|&center=40.480598,-75.616402&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            },
+            {
+                "latLng": {
+                    "lng": -75.6819,
+                    "lat": 39.878101
+                },
+                "adminArea4": "Chester County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Red Lion",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "PA",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -75.6819,
+                    "lat": 39.878101
+                },
+                "linkId": 0,
+                "postalCode": "",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "CITY",
+                "geocodeQualityCode": "A5XAX",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-8,39.878101,-75.6819,0,0|&center=39.878101,-75.6819&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            }
+        ],
+        "providedLocation": {
+            "location": "Red Lion"
+        }
+    },
+    {
+        "locations": [
+            {
+                "latLng": {
+                    "lng": -75.2925,
+                    "lat": 39.9042
+                },
+                "adminArea4": "Delaware County",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Glenolden",
+                "street": "",
+                "adminArea1": "US",
+                "adminArea3": "PA",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -75.2925,
+                    "lat": 39.9042
+                },
+                "linkId": 0,
+                "postalCode": "19036",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "ZIP",
+                "geocodeQualityCode": "Z1XAA",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-1,39.9042,-75.2925,0,0|&center=39.9042,-75.2925&zoom=12&rand=-274296827",
+                "adminArea3Type": "State"
+            }
+        ],
+        "providedLocation": {
+            "location": "19036"
+        }
+    },
+    {
+        "locations": [
+            {
+                "latLng": {
+                    "lng": -76.329999,
+                    "lat": 40.0755
+                },
+                "adminArea4": "",
+                "adminArea5Type": "City",
+                "adminArea4Type": "County",
+                "adminArea5": "Lancaster",
+                "street": "300 Granite Run Drive",
+                "adminArea1": "US",
+                "adminArea3": "PA",
+                "type": "s",
+                "displayLatLng": {
+                    "lng": -76.329999,
+                    "lat": 40.0755
+                },
+                "linkId": 0,
+                "postalCode": "17601",
+                "sideOfStreet": "N",
+                "dragPoint": false,
+                "adminArea1Type": "Country",
+                "geocodeQuality": "ADDRESS",
+                "geocodeQualityCode": "L1AAA",
+                "mapUrl": "http://www.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd|luub2d6ynu,7a=o5-9u22gr&type=map&size=225,160&pois=purple-1,40.0755,-76.329999,0,0|&center=40.0755,-76.329999&zoom=15&rand=-274296827",
+                "adminArea3Type": "State"
+            }
+        ],
+        "providedLocation": {
+            "location": "300 Granite Run Dr, Lancaster, PA"
+        }
+    }
+], "options": {
+    "ignoreLatLngInput": false,
+    "maxResults": -1,
+    "thumbMaps": true
+}, "info": {
+    "copyright": {
+        "text": "© 2013 MapQuest, Inc.",
+        "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+        "imageAltText": "© 2013 MapQuest, Inc."
+    },
+    "statuscode": 0,
+    "messages": []
+}}
