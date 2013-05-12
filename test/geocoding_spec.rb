@@ -12,14 +12,8 @@ describe MapQuest::Services::Geocoding do
     end
   end
 
-  context 'when valid request' do
-
-    let(:mapquest) do
-      MapQuest.new 'xxx'
-    end
-
-    context 'and :location is provided' do
-      describe '#decode' do
+  describe '#decode' do
+      context 'and :location is provided' do
         it 'should receive a :location' do
           mapquest.stub_chain(:geocoding, :decode)
           mapquest.geocoding.should_receive(:decode).with(:location => 'xxx')
@@ -33,36 +27,7 @@ describe MapQuest::Services::Geocoding do
           response.should be_an_instance_of MapQuest::Services::Geocoding::Response
         end
       end
-
-      describe MapQuest::Services::Geocoding::Response do
-
-        let(:valid_response) do
-          params = {
-              :location => 'London, UK'
-          }
-          MapQuest::Services::Geocoding::Response.new fixture('geocoding/valid_results'), params
-        end
-
-        it 'status code should return 0' do
-          valid_response.status[:code].should == 0
-        end
-        it 'error messages should be empty' do
-          valid_response.status[:messages].should == []
-        end
-        it 'should be a valid response' do
-          valid_response.valid.should == true
-        end
-        it 'should return a list of locations' do
-          valid_response.locations.should be_kind_of(Array)
-        end
-        it 'should return the provided location' do
-          valid_response.providedLocation[:location].should == valid_response.params[:location]
-        end
-      end
-    end
-
-    context 'and :location and :maxResults are provided' do
-      describe '#decode' do
+      context 'and :location and :maxResults are provided' do
         it 'should receive :location and :maxResults' do
           mapquest.stub_chain(:geocoding, :decode)
           mapquest.geocoding.should_receive(:decode).with(:location => 'xxx', :maxResults => 3)
@@ -76,31 +41,66 @@ describe MapQuest::Services::Geocoding do
           response.should be_an_instance_of MapQuest::Services::Geocoding::Response
         end
       end
+  end
 
-      describe MapQuest::Services::Geocoding::Response do
+  context 'when request is valid' do
+    describe MapQuest::Services::Geocoding::Response do
 
-        let(:valid_response) do
-          params = {
-              :location => 'London, UK',
-              :maxResults => 2
-          }
-          MapQuest::Services::Geocoding::Response.new fixture('geocoding/decode_maxresults'), params
-        end
+      let(:max_results) { -1 }
+      let(:fixt) { 'geocoding/valid_results' }
+      let(:thumb_maps) { true }
 
-        it 'status code should return 0' do
-          valid_response.status[:code].should == 0
-        end
-        it 'error messages should be empty' do
-          valid_response.status[:messages].should == []
-        end
-        it 'should be a valid response' do
-          valid_response.valid.should == true
-        end
-        it 'should return a list of locations' do
-          valid_response.locations.should be_kind_of(Array)
-        end
+      let(:valid_response) do
+        params = {
+            :location => 'London, UK',
+            :maxResults => max_results,
+            :thumbMaps => thumb_maps
+        }
+        MapQuest::Services::Geocoding::Response.new fixture(fixt), params
+      end
+
+      it 'status code should return 0' do
+        valid_response.status[:code].should == 0
+      end
+      it 'error messages should be empty' do
+        valid_response.status[:messages].should == []
+      end
+      it 'should be a valid response' do
+        valid_response.valid.should == true
+      end
+      it 'should return a list of locations' do
+        valid_response.locations.should be_kind_of(Array)
+      end
+
+      context 'only :location is provided' do
         it 'should return the provided location' do
           valid_response.providedLocation[:location].should == valid_response.params[:location]
+        end
+      end
+      context ':maxResults is also provided' do
+        let(:max_results) { 2 }
+        let(:fixt) { 'geocoding/with_maxResults' }
+        it 'maxResults option should equal to provided max results' do
+          valid_response.options[:maxResults].should == valid_response.params[:maxResults]
+        end
+        it 'should return equal to or less than max amount of locations' do
+          number_of_results = valid_response.locations.length
+          valid_response.params[:maxResults].should >= number_of_results
+        end
+      end
+      context ':thumbMap is also provided' do
+        let(:fixt) { 'geocoding/with_thumbMaps' }
+        let(:thumb_maps) { false }
+        it 'maxResults option should equal to provided max results' do
+          valid_response.options[:thumbMaps].should == valid_response.params[:thumbMaps]
+        end
+      end
+      context ':thumbMap is also provided' do
+        let(:fixt) { 'geocoding/with_thumbMaps_and_maxResults' }
+        let(:thumb_maps) { false }
+        let(:max_results) { 2 }
+        it 'maxResults option should equal to provided max results' do
+          valid_response.options[:thumbMaps].should == valid_response.params[:thumbMaps]
         end
         it 'maxResults option should equal to provided max results' do
           valid_response.options[:maxResults].should == valid_response.params[:maxResults]
