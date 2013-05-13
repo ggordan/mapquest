@@ -43,6 +43,40 @@ describe MapQuest::Services::Geocoding do
       end
   end
 
+  describe '#reverse' do
+    context ':location is provided' do
+      it 'should receive a :location array' do
+        mapquest.stub_chain(:geocoding, :reverse)
+        mapquest.geocoding.should_receive(:reverse).with(:location => ['xxx','xxx'])
+        mapquest.geocoding.reverse(:location => ['xxx','xxx'])
+      end
+      it 'should raise an error if :location is not an array' do
+        expect { mapquest.geocoding.reverse :location => 'xxx' }.to raise_error(MapQuest::Error)
+      end
+      it 'should return an instance of Geocoding::Response' do
+        response = mapquest.geocoding.reverse :location => ['xxx','xxx']
+        response.should be_an_instance_of MapQuest::Services::Geocoding::Response
+      end
+    end
+    context 'and :maxResults are provided' do
+      it 'should receive :location and :maxResults' do
+        mapquest.stub_chain(:geocoding, :reverse)
+        mapquest.geocoding.should_receive(:reverse).with(:location => ['xxx', 'xxx'], :maxResults => 3)
+        mapquest.geocoding.reverse(:location => ['xxx', 'xxx'], :maxResults => 3)
+      end
+      it 'should raise an error if :location is omitted' do
+        expect { mapquest.geocoding.reverse :maxResults => 3 }.to raise_error(MapQuest::Error)
+      end
+      it 'should raise an error if :location is not an array' do
+        expect { mapquest.geocoding.reverse :location => 'xxx',:maxResults => 3 }.to raise_error(MapQuest::Error)
+      end
+      it 'should return an instance of Geocoding::Response' do
+        response = mapquest.geocoding.reverse :location => ['xxx', 'xxx'], :maxResults => 3
+        response.should be_an_instance_of MapQuest::Services::Geocoding::Response
+      end
+    end
+  end
+
   context 'when request is valid' do
     describe MapQuest::Services::Geocoding::Response do
 
