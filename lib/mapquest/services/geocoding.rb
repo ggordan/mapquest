@@ -37,7 +37,7 @@ class MapQuest
       # * :thumbMaps [Boolean] Return a URL to a static map thumbnail image for a location. Defaults to true
       def reverse(params = {})
         raise Error unless params.has_key?(:location) && params[:location].kind_of?(Array)
-        params[:location] = params[:locations].join(',')
+        params[:location] = params[:location].join(',')
         remove_unavailable_params! params
         api_method = {
             :location => API_LOCATION,
