@@ -2,55 +2,46 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe MapQuest do
 
-  let(:mapquest) do
-   MapQuest.new('xxx')
-  end
+  subject { MapQuest }
 
   describe '.new' do
 
-    it 'should raise error if key is missing' do
-      expect { MapQuest.new }.to raise_error(ArgumentError)
-    end
+    context "without api_key" do
 
-    it 'should be instantiated' do
-      mapquest.should be_an_instance_of MapQuest
-    end
+      it 'should raise ArgumentError' do
+        expect { subject.new }.to raise_error(ArgumentError)
+      end
 
-    it 'should have an api key' do
-      mapquest.api_key.should_not == nil
     end
 
   end
 
-  let(:mapquest) do
-    MapQuest.new('xxx')
-  end
+  describe "instance" do
 
-  describe '#geocoding' do
+    let(:key) { 'xxx' }
+    subject(:instance) { MapQuest.new(key) }
 
-    it 'should instantiate Geocoding' do
-      MapQuest::Services::Geocoding.should_receive(:new)
-      mapquest.geocoding
+    it { should be_an_instance_of MapQuest }
+
+    its(:api_key)  { should == key }
+    its(:response) { should == nil }
+
+    describe '#geocoding' do
+      subject(:geocoding) { instance.geocoding }
+
+      it { should be_an_instance_of MapQuest::Services::Geocoding }
+      its(:mapquest) { should == instance }
+
     end
 
-    it 'should raise an error if argument is passed' do
-      expect { mapquest.geocoding("xxx") }.to raise_error(ArgumentError)
-    end
+    describe '#directions' do
+      subject(:directions) { instance.directions }
 
-  end
+      it { should be_an_instance_of MapQuest::Services::Directions }
+      its(:mapquest) { should == instance }
 
-  describe '#directions' do
-
-    it 'should instantiate Directions' do
-      MapQuest::Services::Directions.should_receive(:new)
-      mapquest.directions
-    end
-
-    it 'should raise an error if argument is passed' do
-      expect { mapquest.directions("xxx") }.to raise_error(ArgumentError)
     end
 
   end
-
 
 end
