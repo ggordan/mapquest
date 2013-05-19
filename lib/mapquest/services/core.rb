@@ -18,6 +18,7 @@ class MapQuest
         }
         mapquest.request api_method, options, api.class::Response
       end
+
     end
   end
 end

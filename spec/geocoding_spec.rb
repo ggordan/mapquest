@@ -144,16 +144,12 @@ describe MapQuest::Services::Geocoding do
 
     context 'when invalid request' do
 
-      let(:mapquest) do
-        MapQuest.new 'xxx'
-      end
-
       context 'when api key is invalid' do
         let(:wrong_api_key_response) do
-          MapQuest::Services::Geocoding::Response.new fixture 'invalid_key'
+          MapQuest::Services::Directions::Response.new fixture 'geocoding/invalid_key'
         end
 
-        describe MapQuest::Services::Geocoding::Response do
+        describe MapQuest::Services::Directions::Response do
           it { wrong_api_key_response.status[:code].should == 403 }
           it { wrong_api_key_response.status[:messages].first.should match /^This is not a valid key/ }
         end
@@ -162,10 +158,10 @@ describe MapQuest::Services::Geocoding do
       context 'when argument is invalid' do
 
         let(:invalid_argument) do
-          MapQuest::Services::Geocoding::Response.new fixture 'illegal_argument'
+          MapQuest::Services::Directions::Response.new fixture 'geocoding/illegal_argument'
         end
 
-        describe MapQuest::Services::Geocoding::Response do
+        describe MapQuest::Services::Directions::Response do
           it { invalid_argument.status[:code].should == 400 }
           it { invalid_argument.status[:messages].first.should match /^Illegal argument/ }
         end

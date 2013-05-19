@@ -12,8 +12,10 @@ class MapQuest
       # ==Required parameters
       # * from [String] The location where to end route
       # * to [String] The location from which to start route
-      def route(from, to, options)
+      def route(from, to, options = {})
         if from && to
+          options[:to] = to
+          options[:from] = from
           call_api self, 1, 'route', options
         else
           raise ArgumentError, 'The method must receive the to, and from parameters'
@@ -37,21 +39,29 @@ class MapQuest
 
         # Returns the calculated distance of the route in <b>miles</b>
         def distance
-          route[:distance].to_i
+          if valid
+            route[:distance].to_i
+          end
         end
 
         def locations
-          route[:locations]
+          if valid
+            route[:locations]
+          end
         end
 
         # Returns a hash of the maneuvers in the route
         def maneuvers
-          route[:legs].first[:maneuvers]
+          if valid
+            route[:legs].first[:maneuvers]
+          end
         end
 
         # Returns only the narratives for the route as a list
         def narrative
-          route[:legs].first[:maneuvers].map { |maneuver| maneuver[:narrative] }
+          if valid
+            route[:legs].first[:maneuvers].map { |maneuver| maneuver[:narrative] }
+          end
         end
 
       end
