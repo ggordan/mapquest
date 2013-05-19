@@ -3,6 +3,7 @@ class MapQuest
     class Geocoding < Core
 
       API_LOCATION = :geocoding
+      VALID_OPTIONS = [:location,:maxResults,:thumbMaps]
 
       class TooManyLocations < StandardError; end
 
@@ -11,19 +12,14 @@ class MapQuest
       #   Example: .decode :location => "London, UK"
       #
       # ==Required parameters
-      # * :location [String] The location for which you wish to get data
+      # * location [String] The location for which you wish to get data
       # ==Optional parameters
       # * :maxResults [Integer] The number of results to limit the response to. Defaults to -1 (-1 indicates no limit)
       # * :thumbMaps [Boolean] Return a URL to a static map thumbnail image for a location. Defaults to true
-      def decode(params = {})
-        raise Error unless params.has_key? :location
-        remove_unavailable_params! params
-        api_method = {
-            :location => API_LOCATION,
-            :version => '1',
-            :call => 'address'
-        }
-        mapquest.request api_method, params, Response
+      def address(location, options = {})
+        raise ArgumentError, 'Method must receive a location (string)' unless location
+        options[:location] = location
+        call_api self, 1, 'address', options
       end
 
       # Allows you to search for a location using lat/lng values and returns a response object of the found locations
@@ -31,31 +27,21 @@ class MapQuest
       #   Example: .reverse :location => ['40.0755','-76.329999']
       #
       # ==Required parameters
-      # * :location [Array] The lat, and lng to search for
+      # * location [Array] The lat, and lng to search for
       # ==Optional parameters
       # * :maxResults [Integer] The number of results to limit the response to. Defaults to -1 (-1 indicates no limit)
       # * :thumbMaps [Boolean] Return a URL to a static map thumbnail image for a location. Defaults to true
-      def reverse(params = {})
-        raise Error unless params.has_key?(:location) && params[:location].kind_of?(Array)
-        params[:location] = params[:location].join(',')
-        remove_unavailable_params! params
-        api_method = {
-            :location => API_LOCATION,
-            :version => '1',
-            :call => 'reverse'
-        }
-        mapquest.request api_method, params, Response
+      def reverse(location, options = {})
+        raise ArgumentError, 'Method must receive a location (array)' unless location && location.kind_of?(Array)
+        options[:location] = location.join(',')
+        call_api self, 1, 'reverse', options
       end
 
-      private
-      def remove_unavailable_params!(params)
-        params.keys.each { |k| params.delete(k) unless [:location,:maxResults,:thumbMaps].include? k }
-      end
 
       class Response < MapQuest::Response
 
         def initialize(response_string, params = {})
-          super response_string, params
+          super
           valid_request?
         end
 
@@ -65,23 +51,26 @@ class MapQuest
           # 403 - Key related error
           # 500 -Unknown error
           # Check http://www.mapquestapi.com/geocoding/status_codes.html for more details
-          invalid_requests = [400, 403, 500]
-          if invalid_requests.include? status[:code]
-            if status[:code] === 500
+          @valid = case status[:code]
+            when 500
               raise InvalidRequest
-            end
-            @valid = false
-          else
-            @valid = true
+            when 400, 403
+              false
+            else
+              true
           end
         end
 
         def locations
-          if valid then response[:results].first[:locations] else status end
+          if valid
+            response[:results].first[:locations]
+          end
         end
 
         def providedLocation
-          if valid then response[:results].first[:providedLocation] else status end
+          if valid
+            response[:results].first[:providedLocation]
+          end
         end
 
       end

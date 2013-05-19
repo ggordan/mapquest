@@ -3,38 +3,44 @@ class MapQuest
     class Directions < Core
 
       API_LOCATION = :directions
+      VALID_OPTIONS = [:to, :from]
 
-
-      # Allows you to search for a directions to a location. It returns a response object of the found locations
+      # Allows you to search for direction to a location. It returns a response object of the route
       #
       #   Example: .basic :to => "London, UK", "Manchester, UK"
       #
       # ==Required parameters
-      # * :location [String] The location for which you wish to get data
-      # ==Optional parameters
-      # * :maxResults [Integer] The number of results to limit the response to. Defaults to -1 (-1 indicates no limit)
-      # * :thumbMaps [Boolean] Return a URL to a static map thumbnail image for a location. Defaults to true
-      def basic(params)
-        if params.has_key? :from && :to
-          api_method = {
-              :location => API_LOCATION,
-              :version => '1',
-              :call => 'route'
-          }
-          response = mapquest.request api_method, params, Response
+      # * from [String] The location where to end route
+      # * to [String] The location from which to start route
+      def route(from, to, options)
+        if from && to
+          call_api self, 1, 'route', options
         else
-          raise Error
+          raise ArgumentError, 'The method must receive the to, and from parameters'
         end
       end
 
       class Response < MapQuest::Response
+
+        def initialize(response_string, params = {})
+          super
+          valid_request?
+        end
 
         # Check whether the request made to the API call is valid. Raises an error if the response code is 500
         def valid_request?
           # 400 - Error with input
           # 403 - Key related error
           # 500 -Unknown error
-          # Check http://www.mapquestapi.com/geocoding/status_codes.html for more details
+          # Check http://www.mapquestapi.com/directions/status_codes.html for more details
+          @valid = case status[:code]
+            when 500
+              raise InvalidRequest
+            when 400, 403
+              false
+            else
+              true
+          end
         end
 
         def route
@@ -62,11 +68,7 @@ class MapQuest
 
         # Returns only the narratives for the route as a list
         def narrative
-          narrative = []
-          route[:legs].first[:maneuvers].each do |maneuver|
-            narrative.push maneuver[:narrative]
-          end
-          narrative
+          route[:legs].first[:maneuvers].map { |maneuver| maneuver[:narrative] }
         end
 
       end
