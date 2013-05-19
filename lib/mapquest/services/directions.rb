@@ -24,23 +24,6 @@ class MapQuest
 
         def initialize(response_string, params = {})
           super
-          valid_request?
-        end
-
-        # Check whether the request made to the API call is valid. Raises an error if the response code is 500
-        def valid_request?
-          # 400 - Error with input
-          # 403 - Key related error
-          # 500 -Unknown error
-          # Check http://www.mapquestapi.com/directions/status_codes.html for more details
-          @valid = case status[:code]
-            when 500
-              raise InvalidRequest
-            when 400, 403
-              false
-            else
-              true
-          end
         end
 
         def route
