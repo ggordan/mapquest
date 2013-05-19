@@ -8,7 +8,7 @@ class MapQuest
       super API_ROOT % [method[:location], method[:version], method[:call]]
     end
 
-    def send(params)
+    def query(params)
       get :params => params
     end
 
