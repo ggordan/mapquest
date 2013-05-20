@@ -28,7 +28,7 @@ Or install it yourself as:
     mapquest = MapQuest.new API_KEY
 
     # Get geolocation data
-    data = mapquest.geocoding.decode :location => "London, UK"
+    data = mapquest.geocoding.address "London, UK"
 
     # Get lat/long coordinates of all the locations found
     data.locations.each { |location| puts location[:latLng] }
