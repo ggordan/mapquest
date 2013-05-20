@@ -1,5 +1,6 @@
 class MapQuest
   module Services
+    # The main class used for communicating with the MapQuest Directions API
     class Directions < Core
 
       API_LOCATION = :directions
@@ -7,7 +8,7 @@ class MapQuest
 
       # Allows you to search for direction to a location. It returns a response object of the route
       #
-      #   Example: .basic :to => "London, UK", "Manchester, UK"
+      #   Example: .route :to => "London, UK", "Manchester, UK"
       #
       # ==Required parameters
       # * from [String] The location where to end route

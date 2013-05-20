@@ -1,5 +1,6 @@
 class MapQuest
   module Services
+    # The main class used for communicating with the MapQuest Geocoding API
     class Geocoding < Core
 
       API_LOCATION = :geocoding
@@ -9,7 +10,7 @@ class MapQuest
 
       # Allows you to search for a single location and returns a response object of the found locations
       #
-      #   Example: .decode :location => "London, UK"
+      #   Example: .address :location => "London, UK"
       #
       # ==Required parameters
       # * location [String] The location for which you wish to get data
