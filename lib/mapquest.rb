@@ -8,10 +8,11 @@ require "mapquest/services/geocoding"
 
 class MapQuest
 
-  attr_accessor :api_key
+  attr_accessor :api_key, :version
 
-  def initialize(key)
+  def initialize(key, version=1)
     @api_key = key
+    @version = version
   end
 
   # Acess the geocoding API
