@@ -17,7 +17,7 @@ class MapQuest
         if from && to
           options[:to] = to
           options[:from] = from
-          call_api self, 1, 'route', options
+          call_api self, @mapquest.version, 'route', options
         else
           raise ArgumentError, 'The method must receive the to, and from parameters'
         end

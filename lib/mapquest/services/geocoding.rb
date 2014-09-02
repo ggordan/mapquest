@@ -20,7 +20,7 @@ class MapQuest
       def address(location, options = {})
         raise ArgumentError, 'Method must receive a location (string)' unless location
         options[:location] = location
-        call_api self, 1, 'address', options
+        call_api self, @mapquest.version, 'address', options
       end
 
       # Allows you to search for a location using lat/lng values and returns a response object of the found locations
