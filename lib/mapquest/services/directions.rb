@@ -38,6 +38,11 @@ class MapQuest
           (route[:time].to_i / 60).ceil
         end
 
+        # Returns the drive time in <b>minutes</b> factoring in traffic
+        def real_time
+          (route[:realTime].to_i / 60).ceil
+        end
+
         # Returns the calculated distance of the route in <b>miles</b>
         def distance
           if valid
