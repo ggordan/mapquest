@@ -8,10 +8,11 @@ require "mapquest/services/geocoding"
 
 class MapQuest
 
-  attr_accessor :api_key, :version
+  attr_accessor :api_key, :version, :omq
 
-  def initialize(key, version=1)
+  def initialize(key, version=1, omq=false)
     @api_key = key
+    @omq = omq
     @version = version
   end
 
@@ -32,6 +33,7 @@ class MapQuest
   # * params [Hash] The parameters used for creating the query string
   # * response [Response] The response object of the API being called
   def request(method, params, response)
+    method.merge! :omq => @omq
     req = Request.new method
     params.merge! :key => api_key
     params.each { |k,v| params.delete(k) if v.nil? }
