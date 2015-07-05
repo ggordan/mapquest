@@ -1,11 +1,19 @@
 class MapQuest
   class Request < RestClient::Resource
 
+    RestClient.log =
+  Object.new.tap do |proxy|
+    def proxy.<<(message)
+      Rails.logger.info message
+    end
+  end
+
     # The base url of the mapquest api
-    API_ROOT = 'http://www.mapquestapi.com/%s/v%s/%s'
+    API_ROOT = 'http://%smapquestapi.com/%s/v%s/%s'
 
     def initialize(method)
-      super API_ROOT % [method[:location], method[:version], method[:call]]
+      isOMQ = method[:omq] ? "open." : ""
+      super API_ROOT % [isOMQ, method[:location], method[:version], method[:call]]
     end
 
     def query(params)
